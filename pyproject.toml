@@ -48,6 +48,7 @@ dev = [
     "twine==3.4.2",
     "wheel~=0.38.4",
     "xgboost~=3.0.2",
+    "bandit[toml]~=1.7.7"
 ]
 extras = ["aix360[default,tsice,tslime,tssaliency]==0.3.0"]
 
@@ -86,3 +87,6 @@ markers = [
 where = ["src"]
 
 [tool.setuptools_scm]
+
+[tool.bandit]
+exclude = ["tests"]
