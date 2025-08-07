@@ -86,10 +86,16 @@ jobs:
           source .venv/bin/activate
           pip install -e ".[dev]"
 
-      - name: Run Bandit Security Scan
+      - name: Install Bandit
         run: |
           source .venv/bin/activate
-          bandit -r . --configfile pyproject.toml --format sarif -o results.sarif
+          pip install bandit[sarif]
+
+      - name: Run Bandit Security Scan
+        uses: PyCQA/bandit-action@v1
+        with:
+          targets: "."
+          exclude: "tests"
 
       - name: Upload SARIF results to Security tab
         if: github.ref == 'refs/heads/main'
